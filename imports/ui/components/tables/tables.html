@@ -1,0 +1,126 @@
+<template name="table1">
+  <div class="">
+    <div class="d-none d-lg-block table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Tanggal Pakan</th>
+            <th scope="col">Jenis Pakan</th>
+            <th scope="col">Jumlah Pakan</th>
+            <th scope="col">Harga Pakan</th>
+            <th scope="col">Total Pengeluaran Pakan</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each data}}
+          <tr>
+            <td>
+              {{@index}}
+            </td>
+            <td>
+              {{formatHRDate feedDate}}
+            </td>
+            <td>
+              {{fc_label feedCategory}}
+            </td>
+            <td>
+              {{feedAmount}}
+            </td>
+            <td>
+              {{formatRp feedPrices}}
+            </td>
+            <td>
+              {{formatRp total}}
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    <div class="d-lg-none">
+      {{#each data}}
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title">{{formatHRDate feedDate}}</h5>
+          <p class="card-text">{{fc_label feedCategory}} | {{feedAmount}} | {{formatRp total}}</p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="tableListDosen">
+
+  <div class="card rounded-3 poppins-regular p-4 my-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <h3 class="text-login-content fw-bold pt-1">Daftar Dosen</h3>
+      <a href="/lecturers/add">
+        <button class="btn btn-primary btn-sm" style="background-color: #549DF7; border: 1px solid #549DF7">
+          <i class="fa fa-plus"></i>
+          Tambah Dosen
+        </button>
+      </a>
+    </div>
+    <div class="table-responsive mt-3">
+      <table class="table" id="myTable">
+        <thead>
+          <tr>
+            <th scope="col" class="text-login-content fw-bold">No</th>
+            <th scope="col" class="text-login-content fw-bold">Nama</th>
+            <th scope="col" class="text-login-content fw-bold">No Telepon</th>
+            <th scope="col" class="text-login-content fw-bold">Tanggal Lahir</th>
+            <th scope="col" class="text-login-content fw-bold">Jenis Kelamin</th>
+            <th scope="col" class="text-login-content fw-bold">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each i in dataDosen}}
+          <tr>
+            <td>
+              {{increment  @index}}
+            </td>
+            <td>
+              {{capitalizeWord i.profile.fullName}}
+            </td>
+            <td>
+              {{capitalizeWord i.profile.phoneNumber}}
+            </td>
+
+            <td>
+              {{formatHRDate i.profile.dob}}
+            </td>
+            <td>
+              {{#if equals i.profile.gender "male"}}
+                Laki-Laki
+              {{else if equals i.profile.gender "female"}}
+                Perempuan
+              {{/if}}
+            </td>
+            <td>
+              {{#if isInRoles 'admin'}}
+                <div class="d-flex flex-wrap gap-1">
+                  <a class="btn btn-primary btn-sm btn-edit"
+                      href="/lecturers/detail/{{i._id}}">
+                      <i class="fa fa-circle-info" milik="{{i._id}}"></i>
+                  </a>
+
+                  <a class="btn btn-primary btn-sm btn-edit"
+                      href="/lecturers/edit/{{i._id}}">
+                      <i class="fa fa-edit" milik="{{i._id}}"></i>
+                  </a>
+
+                  <button class="btn btn-danger btn-sm delete-lecturer" id="delete-lecturer" value="{{i._id}}">
+                      <i class="fa fa-trash delete-lecturer" id="{{i._id}}" value="{{i._id}}"></i>
+                  </button>
+                </div>
+              {{/if}}
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>

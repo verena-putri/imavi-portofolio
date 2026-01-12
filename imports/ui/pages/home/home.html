@@ -1,0 +1,61 @@
+<template name="App_home">
+  <style>
+    /* Style the content */
+    .content {
+      /* margin-left: 260px; */
+      /* padding: 20px; */
+      width: 100%;
+    }
+
+    /* Style the header */
+    .header {
+      /* background-color: #0045a7;
+      color: white;
+      padding: 5px;
+      margin-bottom: 10px; */
+    }
+    .nav-item i {
+        font-size: 24px;
+        margin-right: 10px;
+    }
+
+    .employees-section {
+        padding: 20px;
+        background-color: #f5f5f5;
+    }
+
+    .employees-title {
+        font-size: 36px;
+    }
+
+    .move-down {
+        margin-top: 10px;
+    }
+    .btn-more {
+        background-color: white;
+        color: #6666FF;
+        font-weight: bold;
+    }
+
+    .btn-employee-transfer {
+        background-color: transparent;
+        color: #6666FF;
+        font-weight: bold;
+    }
+    .btn-add-employee {
+      background-color: #6666FF;
+      color: white;
+      font-weight: bold;
+    }
+  </style>
+
+  <div class="container-fluid">
+    <div class="px-2">
+      {{#if isInRoles 'dosen'}}
+        {{> cardMobileWelcome username="Dosen John"}}
+      {{else if isInRoles 'admin'}}
+        {{> cardMobileWelcome username="Admin"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

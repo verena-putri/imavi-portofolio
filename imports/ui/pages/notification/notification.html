@@ -1,0 +1,58 @@
+<template name="notification_page">
+    <!-- Notification Page -->
+    <div class="container poppins-regular py-4">
+        <div>
+            <div class="d-flex justify-content-between">
+                <h2 class="poppins-bold">Notifikasi</h2>
+                <div class="my-auto">
+                    <button class="btn btn-sm btn-primary btn-filter" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+                            <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="mt-2 mb-3">
+                {{#if equals filterMode '2'}}
+                    <hr class="mt-1 mb-2" style="border: 1px solid lightgray;">
+                    <div class="my-auto py-auto align-middle">
+                        <label class="fs-5 fw-bold">
+                            Filter
+                        </label>
+                    </div>
+                {{/if}}
+                {{#if equals filterMode '2'}}
+                    <div class="d-flex gap-2 mb-2">
+                        <select id="input_type" class="form-select filter">
+                            <option value="pesan">Pesan</option>
+                            <option value="waktu">Waktu (Tanggal)</option>
+                        </select>
+                        <input type="text" id="input_data" class="form-control filter" placeholder="Cari Notifikasi" />
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+        <hr class="mt-3 mb-4" style="border: 1px solid lightgray;">
+        <!-- {{#if notification}}
+            {{#each item in notification}} -->
+                <div class="card rounded-3 mt-4 p-3">
+                    <div class="d-flex align-items-center">
+                        <div class="col col-12">
+                            <div class="d-flex gap-3">
+                                <div>
+                                    <i class="fa fa-circle text-primary"></i>
+                                </div>
+                                <div class="row row-cols-1 gap-2">
+                                    <div class="col">Dosen baru telah ditambahkan oleh <b>System</b></div>
+                                    <div class="col text-secondary">{{formatHRDate item.createdAt}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- {{/each}} -->
+        <!-- {{else}}
+            <h3 class="text-center">No Notifications</h3>
+        {{/if}} -->
+    </div>
+</template>
